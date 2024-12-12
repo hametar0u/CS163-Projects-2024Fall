@@ -77,7 +77,26 @@ $$\mathcal{L}_{KL}$$ is a KL-divergence term to ensure consistency between chunk
 
 
 ### 3. OpenPose
+1. Two-branch architecture to predict keypoints and Part Affinity Fields (PAFs):  
+   1. Keypoint Detection Branch: this branch outputs heatmaps representing the likelihood of each keypoint (e.g., elbows, knees) being present at each pixel location.  
+   2. PAFs: this branch outputs vector fields that encode the orientation and association between pairs of keypoints (e.g., the direction from a shoulder to an elbow).  
+2.  The base network (feature extractor) processes the input image and produces feature maps, which are passed to subsequent stages; typically CNNs now  
+3. Iterative Refinement (Cascaded Stages)  
+   1. The first stage generates initial heatmaps and PAFs using feature maps from the base network.  
+   2. Each subsequent stage refines the heatmaps and PAFs using the outputs from the previous stage and the original feature maps.  
+   3. The outputs converge to more accurate keypoint and PAF predictions as the stages progress.  
+4. OpenPose uses a dual loss function and the total loss is the sum of these losses across all stages.:  
+   1. Heatmap Loss: Measures the difference between predicted and ground-truth heatmaps.  
+   2. PAF Loss: Measures the difference between predicted and ground-truth PAFs.  
+5. After obtaining the heatmaps and PAFs, OpenPose uses a greedy bipartite matching algorithm to group detected keypoints into individual poses. This step connects keypoints based on their PAF values and geometric constraints.
+
 Brock et al. utilized OpenPose to recognize non-manual content in a continuous Japanese sign language with two main components. First, they used supervised learning to do automatic temporal segmentation with a binary random forest classifier, classifying 0 for transitions and 1 for signs. After frame wise label prediction and segment proposal, they used a segment wise word classification with a CNN, then translating those predicted segment labels to sentence translation.
+
+Ko et al. [3] adapted OpenPose for the task of Korean Sign Language (KSL) recognition and translation. The paper's primary contribution lies in its two-step pipeline. First, OpenPose was used to extract body and hand keypoints from video sequences of KSL, generating a structured skeleton representation of signers. Second, a custom temporal segmentation approach classified motion patterns into discrete signs. This segmentation was followed by a sequence-to-sequence model for translating the segmented signs into natural language sentences. The method was tested on a custom dataset of KSL videos.
+
+![OpenPoseKSLModel](../assets/images/team42/KSL_Model.png)
+*Fig 1. A picture of the model architecture Ko et. al [3] developed from their paper*
+
 
 ## MiCT-RANet Implementation Details
 Training code and fine-tuned model weights were not given, so we had to train from scratch. Due to compute constraints, we were only able to train on 1000 sequences and validate on 981. Originally following the paper’s hyperparameters, we found that SGD with `lr=0.01` and `momentum=0.9` caused exploding gradients, so we switched to Adam with `lr=0.001`. However, the model would now consistently predict empty sequences, and could not rectify that.
@@ -141,13 +160,18 @@ Please make sure to cite properly in your work, for example:
 
 MODIFY BIB TO FIT FORMAT OF [1]
 
-[2] Zhou et. al, MiCT: Mixed 3D/2D Convolutional Tube for Human Action Recognition (2018)
-Prikhodko, A., Grif, M., & Bakaev, M. (2020). Sign language recognition based on notations and neural networks.
+[2] Brock, H., Farag, I., & Nakadai, K. (2020). Recognition of non-manual content in continuous Japanese sign language. Sensors (Switzerland), 20(19), 1–21.
 
-[3] Brock, H., Farag, I., & Nakadai, K. (2020). Recognition of non-manual content in continuous Japanese sign language. Sensors (Switzerland), 20(19), 1–21. 
+[3] Ko, Sang-Ki, Chang Jo Kim, Hyedong Jung, and Choongsang Cho. 2019. "Neural Sign Language Translation Based on Human Keypoint Estimation" Applied Sciences 9, no. 13: 2683. https://doi.org/10.3390/app9132683 
 
 [4] Koller, O., et al. "Continuous sign language recognition: Towards large vocabulary statistical recognition systems handling multiple signers." *Computer Vision and Image Understanding*. 2015.
 
-[5] Zhang, H, et al. "C2ST: Cross-modal Contextualized Sequence Transduction for Continuous Sign Language Recognition," *2023 IEEE/CVF International Conference on Computer Vision (ICCV)*. 2023.
+[5] Prikhodko, A., Grif, M., & Bakaev, M. (2020). Sign language recognition based on notations and neural networks.
+
+[6] Shi et. al, Fingerspelling recognition in the wild with iterative visual attention (2019)
+
+[7] Zhang, H, et al. "C2ST: Cross-modal Contextualized Sequence Transduction for Continuous Sign Language Recognition," *2023 IEEE/CVF International Conference on Computer Vision (ICCV)*. 2023.
+
+[8] Zhou et. al, MiCT: Mixed 3D/2D Convolutional Tube for Human Action Recognition (2018)
 
 ---
