@@ -27,7 +27,14 @@ We evaluate and compare 3 different implementations of CSLR, Continuous Sign Lan
 ## Deep Learning Implementations
 ### 1. MiCT-RANet
 #### Part 1: MiCT
-In 3D convolutions, kernels slide along spatial and temporal dimensions of the input to make 3D spatio-temporal feature maps. The tensor size: `T x H x W x C` which stands for temporal duration, height, width, number of channels respectively. The output is `T' x H' x W' x N` where N=number of filters. The main problem with 3D convolutions are that they can be difficult to optimize with high memory usage and cost. The solution in this approach by Zhou et al. is a Mixed Convolution with 2D and 3D CNNs. MiCT is mixed in 2 ways, first by concatenating connections and adding cross-domain residual connections. The input is passed through a 2D convolution to extract static features then put through a 3D convolution and a cross-domain residual so the 3D convolution only needs to learn residual information along the temporal dimension. This reduces the total number of 3D convolutions needed, reducing model size, while maintaining high performance. Compared to other models like C3D which uses 8 3D convolutions, MiCT uses 4 3D convolutions with better performance and lower memory usage.
+In 3D convolutions, kernels slide along spatial and temporal dimensions of the input to make 3D spatio-temporal feature maps. The tensor size: `T x H x W x C` which stands for temporal duration, height, width, number of channels respectively. The output is `T' x H' x W' x N` where N=number of filters. The main problem with 3D convolutions are that they can be difficult to optimize with high memory usage and cost. The solution in this approach by Zhou et al. [8] is a Mixed Convolution with 2D and 3D CNNs. MiCT is mixed in 2 ways, first by concatenating connections and adding cross-domain residual connections. The input is passed through a 2D convolution to extract static features then put through a 3D convolution and a cross-domain residual so the 3D convolution only needs to learn residual information along the temporal dimension. This reduces the total number of 3D convolutions needed, reducing model size, while maintaining high performance. Compared to other models like C3D which uses 8 3D convolutions, MiCT uses 4 3D convolutions with better performance and lower memory usage.
+
+![3D Conv](../assets/images/team42/3DConv.png)
+*Figure 1: Visualization of a 3D Convolution by Zhou et al.[8]*
+
+![Cross-Domain Residual Connection](../assets/images/team42/MiCT_CNN.png)
+*Figure 2: Illustration of the cross-domain residual connection used in MiCT developed by Zhou et al. [8]*
+
 
 #### Part 2: RANet
 RaNet is short for "Recurrent Attention Network". 
