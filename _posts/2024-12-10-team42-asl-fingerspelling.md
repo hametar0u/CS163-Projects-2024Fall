@@ -33,7 +33,7 @@ In 3D convolutions, kernels slide along spatial and temporal dimensions of the i
 *Figure 1: Visualization of a 3D Convolution by Zhou et al.[8]*
 
 ![Cross-Domain Residual Connection](../assets/images/team42/MiCT_CNN.png)
-*Figure 2: Illustration of the cross-domain residual connection used in MiCT developed by Zhou et al. [8]*
+*Figure 2: Illustration of the cross-domain residual connection used in MiCT developed by Zhou et al.[8]*
 
 
 #### Part 2: RANet
@@ -160,25 +160,22 @@ or you can write in-text formula $$y = wx + b$$.
 ### More Markdown Syntax
 You can find more Markdown syntax at [this page](https://www.markdownguide.org/basic-syntax/).
 
-## Reference
-Please make sure to cite properly in your work, for example:
+## References
 
 [1] Redmon, Joseph, et al. "You only look once: Unified, real-time object detection." *Proceedings of the IEEE conference on computer vision and pattern recognition*. 2016.
 
-MODIFY BIB TO FIT FORMAT OF [1]
+[2] Brock, H., Farag, I., and Nakadai, K. "Recognition of non-manual content in continuous Japanese sign language." *Sensors (Switzerland)*, vol. 20, no. 19, pp. 1–21, 2020.  
 
-[2] Brock, H., Farag, I., & Nakadai, K. (2020). Recognition of non-manual content in continuous Japanese sign language. Sensors (Switzerland), 20(19), 1–21.
+[3] Ko, Sang-Ki, Chang Jo Kim, Hyedong Jung, and Choongsang Cho. "Neural Sign Language Translation Based on Human Keypoint Estimation." *Applied Sciences*, vol. 9, no. 13, p. 2683, 2019. [https://doi.org/10.3390/app9132683](https://doi.org/10.3390/app9132683)  
 
-[3] Ko, Sang-Ki, Chang Jo Kim, Hyedong Jung, and Choongsang Cho. 2019. "Neural Sign Language Translation Based on Human Keypoint Estimation" Applied Sciences 9, no. 13: 2683. https://doi.org/10.3390/app9132683 
+[4] Koller, O., et al. "Continuous sign language recognition: Towards large vocabulary statistical recognition systems handling multiple signers." *Computer Vision and Image Understanding*, 2015.  
 
-[4] Koller, O., et al. "Continuous sign language recognition: Towards large vocabulary statistical recognition systems handling multiple signers." *Computer Vision and Image Understanding*. 2015.
+[5] Prikhodko, A., Grif, M., and Bakaev, M. "Sign language recognition based on notations and neural networks," 2020.  
 
-[5] Prikhodko, A., Grif, M., & Bakaev, M. (2020). Sign language recognition based on notations and neural networks.
+[6] Shi, et al. "Fingerspelling recognition in the wild with iterative visual attention," 2019.  
 
-[6] Shi et. al, Fingerspelling recognition in the wild with iterative visual attention (2019)
+[7] Zhang, H., et al. "C2ST: Cross-modal Contextualized Sequence Transduction for Continuous Sign Language Recognition." *2023 IEEE/CVF International Conference on Computer Vision (ICCV)*, 2023.  
 
-[7] Zhang, H, et al. "C2ST: Cross-modal Contextualized Sequence Transduction for Continuous Sign Language Recognition," *2023 IEEE/CVF International Conference on Computer Vision (ICCV)*. 2023.
-
-[8] Zhou et. al, MiCT: Mixed 3D/2D Convolutional Tube for Human Action Recognition (2018)
+[8] Zhou, et al. "MiCT: Mixed 3D/2D Convolutional Tube for Human Action Recognition," 2018.  
 
 ---
